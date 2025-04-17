@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Sim!!</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <div class="modal" id="characterCreationScreen">
+        <div class="genericWindow">
+            <button id="characterCreationCloseButton">&times;</button>
+            <!-- REMOVE CLOSE BUTTON FROM THIS SCREEN. -->
+            <h1>Welcome to Little Valley!</h1>
+            <p>Before we dive in, we need to know a few things about your character.</p>
+            <label>What's your name?</label><br>
+            <!-- Dropdown for backgrounds will go here -->
+            <!-- Dropdown for last job will go here -->
+            <!-- Generated text will go here -->
+            <!-- Confirm button to save configuration and move into game -->
+            <input id="Name"><br>
+            <button class="selectorButton" id="submitButton">Submit</button><br>
+        </div>
+    </div>
+
+    <div class="screen">
+
+        <!--Sidebar-->
+        <div class="genericWindow sidebar">
+            <h1 id="playerName">Your Name</h1>
+            <img src="/assets/sprout.png">
+            <button class="menuButton" id="inventoryButton">Inventory</button>
+            <button class="menuButton" id="calendarButton">Calendar</button>
+            <button class="menuButton" id="journalButton">Journal</button>
+            <button class="menuButton" id="messageBoardButton">Message Board</button>
+            <button class="menuButton" id="settingsButton">Settings</button>
+            <button class="menuButton" id="newGameButton">New Game</button>
+
+        </div>
+        
+        <!-- Game screen-->
+        <div class="genericWindow gameWindow">
+            <h1 id="location">Location</h1>
+            <p id="locationDesc">Description of location goes here.</p>
+        </div>
+    </div>
+
+    <script src="game.js"/>
+</body>
+</html>
