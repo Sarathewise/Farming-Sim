@@ -12,14 +12,25 @@ document.getElementById("submitButton").onclick = function() {
     document.getElementById("playerName").textContent = playerName
 }
 
+const overlay = document.getElementById("overlay")
 const newGameButton = document.getElementById("newGameButton")
 const characterCreationCloseButton = document.getElementById("characterCreationCloseButton")
 const characterCreationScreen = document.getElementById("characterCreationScreen")
 
+function showOverlay() {
+    overlay.classList.add("show");
+}
+
+function hideOverlay() {
+    overlay.classList.remove("show");
+}
+
 newGameButton.addEventListener("click", () => {
     characterCreationScreen.classList.add("show");
+    showOverlay()
 });
 
 characterCreationCloseButton.addEventListener("click", () => {
     characterCreationScreen.classList.remove("show");
+    hideOverlay()
 });

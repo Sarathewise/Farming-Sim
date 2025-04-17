@@ -104,7 +104,7 @@ button:hover {
     display: none;
 }
 
-#overlay.active {
+#overlay.show {
     pointer-events: all;
     display:flex
 }
