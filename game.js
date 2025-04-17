@@ -1,3 +1,6 @@
+console.log("Is this thing working?")
+
+
 //Character Creation
 let playerName;
 let playerGender;
