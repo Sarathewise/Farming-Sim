@@ -23,6 +23,8 @@ h1 {
     justify-content: space-between;
 }
 
+/* Window and sidebar style */
+
 .genericWindow {
     padding: 20px;
     border: 7px solid #6F826A;
@@ -50,14 +52,15 @@ h1 {
     text-align: center;
 }
 
-
 /* Buttons */
 
 button {
     background-color: #6F826A;
     color: #ffffff;
+    font-size: 15px;
     border: none;
     margin: 5px;
+    padding: 10px 20px;
     text-justify: center;
     border-radius: 12px;
     transition-duration: 0.4s;
@@ -68,32 +71,30 @@ button:hover {
     background-color: #9bb396;
 }
 
-.menuButton {
+.sidebarButton {
     font-size: 20px;
     width: 80%;
     padding: 15px 32px;
 }
 
-.selectorButton {
+.menuButton {
     font-size: 15px;
     width: min(150px, 100%);
     padding: 10px 5px;
 }
 
-#characterCreationCloseButton {
+.closeButton {
     float: right;
     font-weight: bold;
     font-size: 20px;
-    padding: 5px;
+    padding: 5px 10px 10px 10px;
 }
 
-
-/*Start screen pop up*/
+/* Modals */
 
 #overlay {
     background-color: #0000007c;
     position: fixed;
-    display: flex;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -101,15 +102,15 @@ button:hover {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    display: none;
+    visibility: hidden;
 }
 
 #overlay.show {
     pointer-events: all;
-    display:flex
+    visibility:visible;
 }
 
-#characterCreationScreen {
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -117,11 +118,32 @@ button:hover {
     text-align: center;
     transform: translate(-50%, -50%);
     z-index: 10;
-    opacity: 0;
+    visibility: hidden;
+}
+
+.modal.show {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Forms */
+
+input, select {
+    background-color: #F0F1C5;
+    border: 1px solid #BF9264;
+    height: 2em;
+    width:30%;
+    margin: 3px;
+    text-align: center;
+    color: #435040;
+}
+
+#characterCreationScreen {
+    visibility: hidden;
     pointer-events: none;
 }
 
 #characterCreationScreen.show {
-    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
 }
