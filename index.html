@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Sim!!</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+</head>
+
+<body>
+
+    <!-- Character creation screen -->
+
+    <div id="overlay"></div>
+    <div class="modal genericWindow" id="characterCreationMenu">
+            <button class="closeButton" id="characterCreationCloseButton">✘</button>
+            
+            <h1>Welcome to Little Valley!</h1>
+            <p>Before we dive in, we need to know a few things about your character.</p>
+
+            <form id="characterCreation">
+                <label for="playerName">What's your name?</label>
+                <input type="text" name="playerName" id="playerName" required maxlength="20"><br>
+
+                <label for="playerBackground">Where are you from?</label>
+                <select id="playerBackground">
+                    <option value="citySlicker">City Slicker</option>
+                    <option value="farmNative">Farm Native</option>
+                    <option value="feralChild">Feral Child</option>
+                </select><br>
+
+                <label for="playerJob">What did you work as?</label>
+                <select id="playerJob">
+                    <option value="unemployed">Unemployed</option>
+                    <option value="homesteader">Homesteader</option>
+                    <option value="salesperson">Salesperson</option>
+                    <option value="chef">Chef</option>
+                </select><br>
+
+                <label for="playerFarmName">What's your farm called?</label>
+                <input type="text" name="playerFarmName" id="playerFarmName" required maxlength="20"><br>
+
+                <label for="playerFarm">What kind of farm did you buy?</label>
+                <select id="playerFarm">
+                    <option value="orchard">Orchard</option>
+                    <option value="field">Field</option>
+                    <option value="ranch">Ranch</option>
+                    <option value="random">Random</option>
+                </select><br>
+                <!-- Generated text will go here -->
+                <!-- Confirm button to save configuration and move into game -->
+
+                <p id="playerBio">Your bio will show up here!</p>
+
+                <div id="bioSubmitted">
+                    <p>Is this correct?</p>
+                    <button type="submit" class="menuButton" id="submitButton">Yes, that's me!</button>
+                    <button type="reset">No way, start over!</button>
+                </div>
+            </form>
+    </div>
+
+    <!-- Inventory -->
+
+    <div class="modal genericWindow" id="inventory">
+        <button class="closeButton" id="inventoryCloseButton">✘</button>
+        <h1>Inventory</h1>
+    </div>
+
+    <!-- Calendar -->
+
+    <div class="modal genericWindow" id="calendar">
+        <button class="closeButton" id="calendarCloseButton">✘</button>
+    </div>
+    
+    
+    <!-- Journal -->
+    
+    <div class="modal genericWindow" id="journal">
+        <button class="closeButton" id="journalCloseButton">✘</button>
+            <h1>Journal</h1>
+
+            <h2>Quests</h2>
+            <p id="quests">You don't have any quests yet. Check the message board or go talk to people!</p>
+
+            <h2>Crops</h2>
+            <p id="crops">You don't have any crops yet. Get planting!</p>
+
+    </div>
+
+    <!-- Message Board -->
+
+    <div class="modal genericWindow" id="messageBoard">
+        <button class="closeButton" id="messageBoardCloseButton">✘</button>
+    </div>
+
+    <!-- Settings -->
+
+    <div class="modal genericWindow" id="settings">
+        <button class="closeButton" id="settingsCloseButton">✘</button>
+        <button class="sidebarButton" id="newGameButton">New Game</button>
+    </div>
+    
+    <!-- Screen layout -->
+
+    <div class="screen">
+
+        <!--Sidebar-->
+        <div class="genericWindow sidebar">
+            <h1 id="playerNameDisplay">Your Name</h1>
+            <img src="assets\sprout.png">
+            <p id=”timeDate”>money | time | date | weather | ☀️</p>
+            <button class="sidebarButton" id="inventoryButton">Inventory</button>
+            <button class="sidebarButton" id="calendarButton">Calendar</button>
+            <button class="sidebarButton" id="journalButton">Journal</button>
+            <button class="sidebarButton" id="messageBoardButton">Message Board</button>
+            <button class="sidebarButton" id="settingsButton">Settings</button>
+
+        </div>
+        
+        <!-- Game screen-->
+        <div class="genericWindow gameWindow">
+            <h1 id="location">Location</h1>
+            <p id="locationDesc">Description of location goes here.</p>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

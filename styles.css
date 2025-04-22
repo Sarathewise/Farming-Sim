@@ -1,0 +1,172 @@
+/* Font imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Mogra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+body {
+    color: #435040;
+    background-color: #BF9264;
+    font-family: 'Lato', system-ui;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+}
+
+h1 {
+    font-family: 'Mogra', system-ui;
+    font-size: 3rem;
+    justify-self: center;
+}
+
+.screen {
+    margin: 25px;
+    display: flex;
+    column-gap: 2%;
+    justify-content: space-between;
+}
+
+/* Window and sidebar style */
+
+.genericWindow {
+    padding: 20px;
+    border: 7px solid #6F826A;
+    background-color: #BBD8A3;
+    border-radius: 10px;
+    display: block;
+}
+
+.sidebar {
+    width: 300px;
+    text-align: center;
+}
+
+.sidebar > img {
+    padding: 10px;
+    width: 90%;
+}
+
+/* Game window: where the game itself takes place */
+
+.gameWindow {
+    width: 100%;
+}
+
+.gameWindow > #location {
+    text-align: center;
+}
+
+/* Buttons */
+
+button {
+    background-color: #6F826A;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+    margin: 5px;
+    padding: 10px 20px;
+    text-justify: center;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #9bb396;
+}
+
+.sidebarButton {
+    font-size: 1.2rem;
+    width: 80%;
+    padding: 15px 32px;
+}
+
+.menuButton {
+    font-size: 15px;
+    width: min(150px, 100%);
+    padding: 10px 5px;
+}
+
+.closeButton {
+    float: right;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 10px 10px 10px;
+}
+
+/* Modals */
+
+#overlay {
+    background-color: #0000007c;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+#overlay.show {
+    pointer-events: all;
+    visibility:visible;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: max(500px, 75%);
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    visibility: hidden;
+}
+
+.modal.show {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Forms */
+
+input, select {
+    background-color: #F0F1C5;
+    border: 1px solid #BF9264;
+    height: 2em;
+    width:30%;
+    margin: 3px;
+    text-align: center;
+    color: #435040;
+}
+
+/* Character Creation Screen */
+
+#characterCreationMenu {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#characterCreationMenu.show {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#journal {
+    visibility: hidden;
+    pointer-events: none;
+    text-align: left;
+    border: 0;
+    background-image: 
+    repeating-linear-gradient(#F0F1C5, #F0F1C5 1.5em, #BF9264 1.5em, #BF9264 1.6em);
+    padding-top: 0.1em;
+    border-radius: 0 20px 20px 0;
+    height: 90%;
+    width: 600px;
+}
+
+#journal.show {
+    visibility: visible;
+    pointer-events: auto;
+}
