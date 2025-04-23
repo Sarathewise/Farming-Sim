@@ -5,7 +5,7 @@
 
 
 body {
-    color: #435040;
+    color: #000000;
     background-color: #BF9264;
     font-family: 'Lato', system-ui;
     box-sizing: border-box;
@@ -16,6 +16,11 @@ h1 {
     font-family: 'Mogra', system-ui;
     font-size: 3rem;
     justify-self: center;
+    color: #435040;
+}
+
+p {
+    line-height: 1.5;
 }
 
 .screen {
@@ -38,6 +43,7 @@ h1 {
 .sidebar {
     width: 300px;
     text-align: center;
+    line-height: 1;
 }
 
 .sidebar > img {

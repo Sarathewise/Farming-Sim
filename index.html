@@ -26,15 +26,15 @@
                 <label for="playerName">What's your name?</label>
                 <input type="text" name="playerName" id="playerName" required maxlength="20"><br>
 
-                <label for="playerBackground">Where are you from?</label>
-                <select id="playerBackground">
+                <label for="playerOrigin">Where are you from?</label>
+                <select name="playerOrigin" id="playerOrigin">
                     <option value="citySlicker">City Slicker</option>
                     <option value="farmNative">Farm Native</option>
                     <option value="feralChild">Feral Child</option>
                 </select><br>
 
                 <label for="playerJob">What did you work as?</label>
-                <select id="playerJob">
+                <select name="playerJob" id="playerJob">
                     <option value="unemployed">Unemployed</option>
                     <option value="homesteader">Homesteader</option>
                     <option value="salesperson">Salesperson</option>
@@ -45,21 +45,23 @@
                 <input type="text" name="playerFarmName" id="playerFarmName" required maxlength="20"><br>
 
                 <label for="playerFarm">What kind of farm did you buy?</label>
-                <select id="playerFarm">
+                <select name="playerFarm" id="playerFarm">
                     <option value="orchard">Orchard</option>
                     <option value="field">Field</option>
                     <option value="ranch">Ranch</option>
                     <option value="random">Random</option>
                 </select><br>
+                
                 <!-- Generated text will go here -->
-                <!-- Confirm button to save configuration and move into game -->
 
                 <p id="playerBio">Your bio will show up here!</p>
+
+                <!-- Confirm button to save configuration and move into game -->
 
                 <div id="bioSubmitted">
                     <p>Is this correct?</p>
                     <button type="submit" class="menuButton" id="submitButton">Yes, that's me!</button>
-                    <button type="reset">No way, start over!</button>
+                    <button type="reset" id="resetButton">No way, start over!</button>
                 </div>
             </form>
     </div>
@@ -113,7 +115,7 @@
         <div class="genericWindow sidebar">
             <h1 id="playerNameDisplay">Your Name</h1>
             <img src="assets\sprout.png">
-            <p id=”timeDate”>money | time | date | weather | ☀️</p>
+            <p id= "timeDate">money | time | date | weather | ☀️</p>
             <button class="sidebarButton" id="inventoryButton">Inventory</button>
             <button class="sidebarButton" id="calendarButton">Calendar</button>
             <button class="sidebarButton" id="journalButton">Journal</button>
@@ -124,8 +126,13 @@
         
         <!-- Game screen-->
         <div class="genericWindow gameWindow">
-            <h1 id="location">Location</h1>
-            <p id="locationDesc">Description of location goes here.</p>
+            <h1 id="location">Farmhouse Porch</h1>
+            <p id="locationDesc">As you exit the farmhouse, you're startled by the sound of galloping hooves. Someone on a horse trots down the path. They don't look down at all as they ride up right beside you, and you're not quite convinced you won't end up trampled under their steed until they come to a stop.</p>
+            <p>“This is the farm that's supposed to be my new competition?” the person says, eyes scanning the landscape. “This place doesn't even have a chicken.” Which— alright, so there's still a lot of work to do, but that's frankly uncalled for.</p>
+            <p>Finally, they look down at you. “Name's Reese, local cowpoke. If you want a shot at even competing with my ranch, you'll have to come see it first.”</p>
+            <button name="option1">1</button> <label for="option1">That was rude!</label> <br>
+            <button name="option2">2</button> <label for="option2">It's too early for this. Go back inside.</label> <br>
+            <button name="option3">3</button> <label for="option3">Since they're offering...</label> <br>
         </div>
     </div>
 
