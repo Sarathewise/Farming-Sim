@@ -71,6 +71,7 @@
     <div class="modal genericWindow" id="inventory">
         <button class="closeButton" id="inventoryCloseButton">✘</button>
         <h1>Inventory</h1>
+        <ul id="inventoryDisplay"></ul>
     </div>
 
     <!-- Calendar -->
@@ -104,7 +105,10 @@
 
     <div class="modal genericWindow" id="settings">
         <button class="closeButton" id="settingsCloseButton">✘</button>
-        <button class="sidebarButton" id="newGameButton">New Game</button>
+        <h1>Settings</h1>
+        <button class="sidebarButton" name="saveGameButton" id="saveGameButton">Save Game</button>
+        <button class="sidebarButton" name="loadGameButton" id="loadGameButton">Load Game</button>
+        <button class="sidebarButton" name="newGameButton" id="newGameButton">New Game</button>
     </div>
     
     <!-- Screen layout -->
@@ -121,7 +125,6 @@
             <button class="sidebarButton" id="journalButton">Journal</button>
             <button class="sidebarButton" id="messageBoardButton">Message Board</button>
             <button class="sidebarButton" id="settingsButton">Settings</button>
-
         </div>
         
         <!-- Game screen-->
@@ -135,7 +138,8 @@
             <button name="option3">3</button> <label for="option3">Since they're offering...</label> <br>
         </div>
     </div>
-
+    
+    <script src="items.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

@@ -1,5 +1,11 @@
 console.log("Is this thing working?")
 
+//Reuseable randomization
+
+function randomize(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
+  }
+
 //Overlay Functionality
 
 const overlay = document.getElementById("overlay")
@@ -34,40 +40,54 @@ newGameButton.addEventListener("click", () => {
     settings.classList.remove("show");
 })
 
-let playerName;
-let playerPronouns;
-let playerOrigin;
-let playerJob;
-let PlayerFarm;
-
 //Saving the character creation form
 
 document.getElementById("characterCreation").addEventListener('submit', (event) => {
     event.preventDefault();
     form = document.getElementById("characterCreation") ;
     let formData =  new FormData(form);
-    playerName = formData.get("playerName");
-    playerOrigin = formData.get("playerOrigin");
-    playerJob = formData.get("playerJob");
-    PlayerFarm = formData.get("playerFarm");
-    console.log(playerJob);
-    document.getElementById("playerNameDisplay").textContent = playerName;
+    let playerInfo = Object.fromEntries(formData);
+    document.getElementById("playerNameDisplay").textContent = playerInfo.playerName;
 
-    //print player bio
-
-    document.getElementById("playerBio").innerHTML = `Your name is ${playerName}. You go by playerPronouns pronouns.`
 })
+
+//Confirming Bio
+
+document.getElementById("playerBio").innerHTML = `Your name is ${playerName}. You go by playerPronouns pronouns.`
 
 
 //Inventory
 
 const inventoryButton = document.getElementById("inventoryButton")
 const inventory = document.getElementById("inventory")
-
+const inventoryitems = new Map()
 inventoryButton.addEventListener("click", () => {
     showOverlay();
     inventory.classList.add("show");
 })
+
+function updateInventory(){
+
+    const parent = document.getElementById("inventoryDisplay")
+    parent.innerHTML = ""
+    inventoryitems.keys().forEach((item) => {
+        if (inventoryitems.get(item) <= 0 ) return
+        console.log(item)
+        let list = document.createElement("li")
+        list.textContent = `${item.name} - ${inventoryitems.get(item)}`
+        parent.appendChild(list)
+    })
+
+}
+
+function addToInventory(item, count) {
+    if (inventoryitems.has(item)) inventoryitems.set(item, inventoryitems.get(item) + count)
+    else inventoryitems.set(item, count)
+    console.log(item.name, count)
+    updateInventory()
+}
+
+
 
 //Calendar
 
@@ -111,48 +131,33 @@ settingsButton.addEventListener("click", () => {
 })
 
 
-//Date
+//Sidebar
 
-let season = ["Spring", "Summer", "Fall", "Winter"]
-let time = new Date(0, 0, 0, 6, 0);
-let timeDisplay = new Intl.DateTimeFormat(undefined, {hour: "numeric", minute: "numeric"}).format(time)
-document.getElementById("timeDate").innerText = `money | ${timeDisplay} | date | weather | ☀️`;
+const days = Array.from({length: 30}, (_, index) => index + 1);
 
-//Seeds
-
-let arugula = {
-    description: "Arugula is a short, fast-growing, leafy green with a tangy flavor. It's that spiky bitter stuff you find in mixed salads.",
-    season: ["spring", "summer", "fall"],
-    growingTime: 7,
-    seedingTime: 17,
-    yield: 1,
-    seedYield: 3,
-    buy: 8,
-    sell: 13,
-    bulk: 10
+const date = {
+    season: ["Spring", "Summer", "Fall", "Winter"],
+    day: days
 };
+let todayDate = `${randomize(date.season)}-${randomize(date.day)}`;
 
-let potato = {
-    description: "Potatoes are a hardy, versatile root vegetable. They're easy to grow and easy to cook.",
-    season: ["spring", "summer", "fall"],
-    growingTime: 10,
-    seedingTime: 20,
-    yield: 5,
-    seedYield: 7,
-    buy: 5,
-    sell: 10,
-    bulk: 7
-}
+let time = new Date(0, 0, 0, 6, 0);
+let timeDisplay = new Intl.DateTimeFormat(undefined, {hour: "numeric", minute: "numeric"}).format(time);
 
-let sugarCane = {
-    description: "Sugar cane is a bamboo-like grass grown in tropical conditions. It can be squeezed for a sweet, refreshing juice, or refined into sugar.",
-    season: ["summer"],
-    growingTime: 20,
-    seedingTime: 30,
-    yield: 3,
-    seedYield: 7,
-    buy: 9,
-    sell: 10,
-    bulk: 7
-}
+let money = 0;
+let moneyDisplay = new Intl.NumberFormat(undefined, {currency: "USD", style: "currency"}).format(money);
 
+const weather = ["Sunny | ☀️", "Rainy | 🌧️"];
+let todayWeather = randomize(weather);
+
+document.getElementById("timeDate").innerText = `${moneyDisplay} | ${timeDisplay} | ${todayDate} | ${todayWeather}`;
+
+
+
+// var a  = JSON.stringify(sugarCane)
+// console.log(JSON.parse(a))
+
+addToInventory(sugarCane, 10)
+addToInventory(arugula,1)
+addToInventory(potato,2)
+console.log(inventoryitems)
