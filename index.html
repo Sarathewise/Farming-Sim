@@ -118,8 +118,8 @@
         <!--Sidebar-->
         <div class="genericWindow sidebar">
             <h1 id="playerNameDisplay">Your Name</h1>
-            <img src="assets\sprout.png">
-            <p id= "timeDate">money | time | date | weather | ☀️</p>
+            <img id="playerPortrait" src="assets\sprout.png">
+            <p id="timeDate">money | time | date | weather | ☀️</p>
             <button class="sidebarButton" id="inventoryButton">Inventory</button>
             <button class="sidebarButton" id="calendarButton">Calendar</button>
             <button class="sidebarButton" id="journalButton">Journal</button>
@@ -129,17 +129,21 @@
         
         <!-- Game screen-->
         <div class="genericWindow gameWindow">
-            <h1 id="location">Farmhouse Porch</h1>
-            <p id="locationDesc">As you exit the farmhouse, you're startled by the sound of galloping hooves. Someone on a horse trots down the path. They don't look down at all as they ride up right beside you, and you're not quite convinced you won't end up trampled under their steed until they come to a stop.</p>
-            <p>“This is the farm that's supposed to be my new competition?” the person says, eyes scanning the landscape. “This place doesn't even have a chicken.” Which— alright, so there's still a lot of work to do, but that's frankly uncalled for.</p>
-            <p>Finally, they look down at you. “Name's Reese, local cowpoke. If you want a shot at even competing with my ranch, you'll have to come see it first.”</p>
-            <button name="option1">1</button> <label for="option1">That was rude!</label> <br>
-            <button name="option2">2</button> <label for="option2">It's too early for this. Go back inside.</label> <br>
-            <button name="option3">3</button> <label for="option3">Since they're offering...</label> <br>
+            <h1 id="location">Welcome to Nyota!</h1>
+
+            <div id="textDisplay">
+                <p>Nyota is a text-based farming sim built specifically so that I could learn HTML, CSS, and JS while creating the farming sim of my dreams. That means there's a lot of jank and a lot that's unfinished.</p>
+                <p>Agenda: Create scene inferstructure, Write intro, Create calendar</p>
+            </div>
+
+            <div id="choiceDisplay">
+                <button name="option1">1</button> <label for="option1">Choices go here :]</label> <br>
+            </div>
         </div>
     </div>
     
     <script src="items.js"></script>
     <script src="index.js"></script>
+    <script src="scenes.js"></script>
 </body>
 </html>

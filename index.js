@@ -152,12 +152,8 @@ let todayWeather = randomize(weather);
 
 document.getElementById("timeDate").innerText = `${moneyDisplay} | ${timeDisplay} | ${todayDate} | ${todayWeather}`;
 
-
+// Saving and loading data:
 
 // var a  = JSON.stringify(sugarCane)
 // console.log(JSON.parse(a))
 
-addToInventory(sugarCane, 10)
-addToInventory(arugula,1)
-addToInventory(potato,2)
-console.log(inventoryitems)

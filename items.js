@@ -1,3 +1,6 @@
+// How to add to inventory:
+// addToInventory(object, amount)
+
 //Seeds
 
 let arugula = {
