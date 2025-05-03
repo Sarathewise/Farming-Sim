@@ -10,15 +10,18 @@ let scene = {
 <p>After that, there&rsquo;s still a half hour of driving left before you pull up to the farmhouse. It&rsquo;s a beat up old thing, definitely in need of some TLC, but it&rsquo;s <em>yours, </em>and that&rsquo;s worth more than a few hours in the back of a stranger&rsquo;s car, not to mention the train ride that came before that.</p>
 <p>This is day one of your new life. What do you do first?</p>`,
         choices: [
-            {choice: "Go inside"},
-            {choice: "Check out the fields"},
+            {choice: "Go inside",
+                nextScene: "farmhouseInteriorIntro"
+            },
+            {choice: "Check out the fields",
+                nextScene: "fieldsIntro"
+            },
         ],
-        nextScene: ["farmhouseInteriorIntro", "fieldsIntro"]
     },
 
     farmhouseInteriorIntro: {
         location: "Farmhouse",
-        text: ``,
+        text: `lol`,
         choices: [
             {choice: ""},
         ]
@@ -41,26 +44,33 @@ let scene = {
 
 // Scene infrastructure
 
+//Creating buttons from array of choices
 function getInputs() {
     let input = ""
     for(let i = 0; i < scene[scene.currentScene].choices.length; i++) {
         input += `
-        <button class="choiceButton" id="choice${i}" name= "choice${i}">${i + 1}</button>
+        <button data-nextscene= ${scene[scene.currentScene].choices[i].nextScene} class="choiceButton" id="choice${i}" name="choice${i}">${i + 1}</button>
         <label for="choice${i}">${scene[scene.currentScene].choices[i].choice}</label> </br>
         `
-        // let choiceButton = document.getElementById(`choice${i}`)
-        // choiceButton.addEventListener("click", () => {
-        //     currentScene = scene[scene.currentScene].nextScene
-        // })
     }
     return input;
+}
+
+//trying to figure out how to get the value of the button clicked after the choice buttons are created
+function getInputValue() {
+    let inputs = document.querySelectorAll('.choiceButton')
+    inputs.forEach((element, index)=> {
+        element.addEventListener("click", () => {
+            scene.currentScene= element.getAttribute("data-nextscene")
+            renderScene()
+        })
+    })
 }
 
 function renderScene() {
     document.getElementById("location").innerText = scene[scene.currentScene].location
     document.getElementById("textDisplay").innerHTML = scene[scene.currentScene].text
     document.getElementById("choiceDisplay").innerHTML = `${getInputs()}`
+    getInputValue()
 }
 
-console.log(renderScene())
-cons

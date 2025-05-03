@@ -40,21 +40,28 @@ newGameButton.addEventListener("click", () => {
     settings.classList.remove("show");
 })
 
-//Saving the character creation form
+//Pulling from the character creation form
+
+let playerInfo
 
 document.getElementById("characterCreation").addEventListener('submit', (event) => {
     event.preventDefault();
     form = document.getElementById("characterCreation") ;
     let formData =  new FormData(form);
-    let playerInfo = Object.fromEntries(formData);
-    document.getElementById("playerNameDisplay").textContent = playerInfo.playerName;
-
+    playerInfo = Object.fromEntries(formData);
+    document.getElementById("playerBio").innerHTML = `Your name is ${playerInfo.playerName}. You go by playerPronouns pronouns.`
+    return playerInfo
 })
+
 
 //Confirming Bio
 
-document.getElementById("playerBio").innerHTML = `Your name is ${playerName}. You go by playerPronouns pronouns.`
-
+startGame = document.getElementById("startGame").addEventListener("click", () => {
+    hideOverlay();
+    document.getElementById("playerNameDisplay").textContent = playerInfo.playerName;
+    Array.from(modal).forEach((element) => element.classList.remove("show"));
+    renderScene()
+})
 
 //Inventory
 
@@ -72,7 +79,7 @@ function updateInventory(){
     parent.innerHTML = ""
     inventoryitems.keys().forEach((item) => {
         if (inventoryitems.get(item) <= 0 ) return
-        console.log(item)
+        // console.log(item)
         let list = document.createElement("li")
         list.textContent = `${item.name} - ${inventoryitems.get(item)}`
         parent.appendChild(list)

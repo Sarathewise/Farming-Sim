@@ -19,7 +19,7 @@
     <div class="modal genericWindow" id="characterCreationMenu">
             <button class="closeButton" id="characterCreationCloseButton">✘</button>
             
-            <h1>Welcome to Little Valley!</h1>
+            <h1>Create your character!</h1>
             <p>Before we dive in, we need to know a few things about your character.</p>
 
             <form id="characterCreation">
@@ -54,14 +54,16 @@
                 
                 <!-- Generated text will go here -->
 
+                <br><button type="submit" class="menuButton" id="submitButton">Generate bio</button>
                 <p id="playerBio">Your bio will show up here!</p>
 
-                <!-- Confirm button to save configuration and move into game -->
+                <!-- Confirm button to save configuration-->
 
                 <div id="bioSubmitted">
+                    
                     <p>Is this correct?</p>
-                    <button type="submit" class="menuButton" id="submitButton">Yes, that's me!</button>
-                    <button type="reset" id="resetButton">No way, start over!</button>
+                    <button id="startGame">Yep, start the game!</button>
+                    <button type="reset" id="resetButton">No way, start over!</button> <br>
                 </div>
             </form>
     </div>
@@ -106,8 +108,8 @@
     <div class="modal genericWindow" id="settings">
         <button class="closeButton" id="settingsCloseButton">✘</button>
         <h1>Settings</h1>
-        <button class="sidebarButton" name="saveGameButton" id="saveGameButton">Save Game</button>
-        <button class="sidebarButton" name="loadGameButton" id="loadGameButton">Load Game</button>
+        <!-- <button class="sidebarButton" name="saveGameButton" id="saveGameButton">Save Game</button>
+        <button class="sidebarButton" name="loadGameButton" id="loadGameButton">Load Game</button> -->
         <button class="sidebarButton" name="newGameButton" id="newGameButton">New Game</button>
     </div>
     
@@ -132,12 +134,13 @@
             <h1 id="location">Welcome to Nyota!</h1>
 
             <div id="textDisplay">
-                <p>Nyota is a text-based farming sim built specifically so that I could learn HTML, CSS, and JS while creating the farming sim of my dreams. That means there's a lot of jank and a lot that's unfinished.</p>
-                <p>Agenda: Create scene inferstructure, Write intro, Create calendar</p>
+                <p>Nyota (Swahili for star) is a text-based farming sim built specifically so that I could learn HTML, CSS, and JS while creating the farming sim of my dreams. That means there's a lot of jank and most things are unfinished.</p>
+                <p>Agenda: Link scene button options to next scene, Display full bio in new game menu, Implement saving/loading (local storage/file), Create calendar</p>
+                <p>Go to Settings --> new game to begin :)</p>
+                <p>Warning: Saving isn't implemented yet! Reloading the page will delete your progress.</p>
             </div>
 
             <div id="choiceDisplay">
-                <button name="option1">1</button> <label for="option1">Choices go here :]</label> <br>
             </div>
         </div>
     </div>
