@@ -235,7 +235,7 @@ function loadLocalSave() {
         renderScene()
         closeModal()
     }
-    else (print("No local save found."))
+    else (alert("No local save found."))
 }
 
 loadGameButton.addEventListener("click", () => {
