@@ -61,8 +61,8 @@
 
                 <div id="bioSubmitted">
                     
-                    <p>Is this correct?</p>
-                    <button id="startGame">Yep, start the game!</button>
+                    <p>Is this correct? (This will overwrite your local save!)</p>
+                    <button id="newGame">Yep, start the game!</button>
                     <button type="reset" id="resetButton">No way, start over!</button> <br>
                 </div>
             </form>
@@ -108,9 +108,15 @@
     <div class="modal genericWindow" id="settings">
         <button class="closeButton" id="settingsCloseButton">✘</button>
         <h1>Settings</h1>
-        <!-- <button class="sidebarButton" name="saveGameButton" id="saveGameButton">Save Game</button>
-        <button class="sidebarButton" name="loadGameButton" id="loadGameButton">Load Game</button> -->
+        <p>Use the New Game button to start a new save (currently only supports one save)!</p>
         <button class="sidebarButton" name="newGameButton" id="newGameButton">New Game</button>
+        <p>By default, the game saves to and loads from your browser's local storage.</p>
+        <button class="sidebarButton" name="saveGameButton" id="saveGameButton">Save Game</button>
+        <button class="sidebarButton" name="saveGameButton" id="loadGameButton">Load Game</button>
+        <p>You may want to back up your files by saving to your device (not yet implemented).</p>
+        <button class="sidebarButton" name="exportGameButton" id="exportFileButton">Export to File</button>
+        <button class="sidebarButton" name="loadGameButton" id="loadFileButton">Load from File</button>
+        
     </div>
     
     <!-- Screen layout -->
@@ -135,9 +141,9 @@
 
             <div id="textDisplay">
                 <p>Nyota (Swahili for star) is a text-based farming sim built specifically so that I could learn HTML, CSS, and JS while creating the farming sim of my dreams. That means there's a lot of jank and most things are unfinished.</p>
-                <p>Agenda: Link scene button options to next scene, Display full bio in new game menu, Implement saving/loading (local storage/file), Create calendar</p>
-                <p>Go to Settings --> new game to begin :)</p>
-                <p>Warning: Saving isn't implemented yet! Reloading the page will delete your progress.</p>
+                <p>Agenda: Display full bio in new game menu, Implement saving/loading (local storage/file), Create calendar</p>
+                <p>We have achieved saving! It's a little jank still, so be careful.</p>
+                <p>Go to Settings to begin :)</p>
             </div>
 
             <div id="choiceDisplay">

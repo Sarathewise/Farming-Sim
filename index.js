@@ -4,7 +4,7 @@ console.log("Is this thing working?")
 
 function randomize(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
-  }
+}
 
 //Overlay Functionality
 
@@ -16,80 +16,48 @@ function showOverlay() {
     overlay.classList.add("show");
 }
 
-function hideOverlay() {
+function closeModal() {
     overlay.classList.remove("show");
+    Array.from(modal).forEach((element) => element.classList.remove("show"));
 }
 
 Array.from(closeButtons).forEach(element => {
     element.addEventListener("click", () => {
-        hideOverlay();
-        Array.from(modal).forEach((element) => element.classList.remove("show"));
+        closeModal();
+        
     });
 });
 
-//Character Creation
-
-// open menu
-
-const newGameButton = document.getElementById("newGameButton")
-const characterCreationMenu = document.getElementById("characterCreationMenu")
-
-newGameButton.addEventListener("click", () => {
-    showOverlay();
-    characterCreationMenu.classList.add("show");
-    settings.classList.remove("show");
-})
-
-//Pulling from the character creation form
-
-let playerInfo
-
-document.getElementById("characterCreation").addEventListener('submit', (event) => {
-    event.preventDefault();
-    form = document.getElementById("characterCreation") ;
-    let formData =  new FormData(form);
-    playerInfo = Object.fromEntries(formData);
-    document.getElementById("playerBio").innerHTML = `Your name is ${playerInfo.playerName}. You go by playerPronouns pronouns.`
-    return playerInfo
-})
 
 
-//Confirming Bio
-
-startGame = document.getElementById("startGame").addEventListener("click", () => {
-    hideOverlay();
-    document.getElementById("playerNameDisplay").textContent = playerInfo.playerName;
-    Array.from(modal).forEach((element) => element.classList.remove("show"));
-    renderScene()
-})
 
 //Inventory
 
 const inventoryButton = document.getElementById("inventoryButton")
 const inventory = document.getElementById("inventory")
-const inventoryitems = new Map()
+let inventoryItems = new Map()
 inventoryButton.addEventListener("click", () => {
     showOverlay();
     inventory.classList.add("show");
 })
 
-function updateInventory(){
+function updateInventory() {
 
     const parent = document.getElementById("inventoryDisplay")
     parent.innerHTML = ""
-    inventoryitems.keys().forEach((item) => {
-        if (inventoryitems.get(item) <= 0 ) return
+    inventoryItems.keys().forEach((item) => {
+        if (inventoryItems.get(item) <= 0) return
         // console.log(item)
         let list = document.createElement("li")
-        list.textContent = `${item.name} - ${inventoryitems.get(item)}`
+        list.textContent = `${item.name} - ${inventoryItems.get(item)}`
         parent.appendChild(list)
     })
 
 }
 
 function addToInventory(item, count) {
-    if (inventoryitems.has(item)) inventoryitems.set(item, inventoryitems.get(item) + count)
-    else inventoryitems.set(item, count)
+    if (inventoryItems.has(item)) inventoryItems.set(item, inventoryItems.get(item) + count)
+    else inventoryItems.set(item, count)
     console.log(item.name, count)
     updateInventory()
 }
@@ -140,27 +108,137 @@ settingsButton.addEventListener("click", () => {
 
 //Sidebar
 
-const days = Array.from({length: 30}, (_, index) => index + 1);
+const days = Array.from({ length: 30 }, (_, index) => index + 1);
 
 const date = {
     season: ["Spring", "Summer", "Fall", "Winter"],
     day: days
 };
-let todayDate = `${randomize(date.season)}-${randomize(date.day)}`;
+let todayDate
 
-let time = new Date(0, 0, 0, 6, 0);
-let timeDisplay = new Intl.DateTimeFormat(undefined, {hour: "numeric", minute: "numeric"}).format(time);
+let currentTime = new Date(0, 0, 0, 6, 0);
+let timeDisplay = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "numeric" }).format(currentTime);
 
 let money = 0;
-let moneyDisplay = new Intl.NumberFormat(undefined, {currency: "USD", style: "currency"}).format(money);
+let moneyDisplay
 
 const weather = ["Sunny | ☀️", "Rainy | 🌧️"];
 let todayWeather = randomize(weather);
 
-document.getElementById("timeDate").innerText = `${moneyDisplay} | ${timeDisplay} | ${todayDate} | ${todayWeather}`;
+function setTimeDate() {
+    moneyDisplay = new Intl.NumberFormat(undefined, { currency: "USD", style: "currency" }).format(money);
+    document.getElementById("timeDate").innerText = `${moneyDisplay} | ${timeDisplay} | ${todayDate} | ${todayWeather}`;
+}
 
-// Saving and loading data:
 
-// var a  = JSON.stringify(sugarCane)
-// console.log(JSON.parse(a))
+
+//Character Creation
+
+// open menu
+
+const newGameButton = document.getElementById("newGameButton")
+const characterCreationMenu = document.getElementById("characterCreationMenu")
+
+newGameButton.addEventListener("click", () => {
+    showOverlay();
+    characterCreationMenu.classList.add("show");
+    settings.classList.remove("show");
+})
+
+//Pulling from the character creation form
+
+let playerInfo = {  }
+
+function newPlayerInfo() {
+    event.preventDefault();
+    form = document.getElementById("characterCreation");
+    let formData = new FormData(form);
+    playerInfo = Object.fromEntries(formData);
+}
+
+//Confirming Bio
+
+document.getElementById("characterCreation").addEventListener('submit', (event) => {
+    newPlayerInfo();
+    document.getElementById("playerBio").innerHTML = `Your name is ${playerInfo.playerName}. You go by playerPronouns pronouns.`;
+})
+
+//Saving new game
+
+newGame = document.getElementById("newGame").addEventListener("click", () => {
+    closeModal();
+    newPlayerInfo();
+    document.getElementById("playerNameDisplay").textContent = playerInfo.playerName;
+    
+    //Init
+    scene.currentScene = "intro"
+    currentTime = new Date(0, 0, 0, 6, 0);
+    money = 1500;
+    todayDate = `${date.season[0]}-${date.day[0]}`;
+    setTimeDate()
+    renderScene();
+
+    //Save
+    localStorage.setItem("save", createSave())
+})
+
+
+//Save game
+
+const saveGameButton = document.getElementById("saveGameButton")
+
+function createSave() {
+    let save = {
+        playerInfo: playerInfo,
+        todayDate: todayDate,
+        currentTime: currentTime,
+        money: money,
+        todayWeather: todayWeather,
+        inventoryItems: inventoryItems,
+        currentScene: scene.currentScene
+    }
+    return JSON.stringify(save)
+}
+
+saveGameButton.addEventListener("click", () => {
+    localStorage.setItem("save", createSave())
+})
+
+const exportFileButton = document.getElementById("exportFileButton")
+
+exportFileButton.addEventListener("click", () => {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(createSave());
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", "save.json");
+    document.body.appendChild(dlAnchorElem)
+    dlAnchorElem.click();
+    dlAnchorElem.remove();
+})
+
+//Loading game from local storage
+
+const loadGameButton = document.getElementById("loadGameButton")
+
+function loadLocalSave() {
+    if (localStorage.getItem("save") !== null) {
+        localSave = JSON.parse(localStorage.getItem("save"));
+        playerInfo = localSave.playerInfo;
+        todayDate = localSave.todayDate;
+        time = localSave.time;
+        money = localSave.money;
+        todayWeather = localSave.todayWeather;
+        inventoryItems = localSave.inventoryItems;
+        scene.currentScene = localSave.currentScene;
+        document.getElementById("playerNameDisplay").textContent = playerInfo.playerName;
+        setTimeDate()
+        renderScene()
+        closeModal()
+    }
+    else (print("No local save found."))
+}
+
+loadGameButton.addEventListener("click", () => {
+    loadLocalSave()
+})
 
