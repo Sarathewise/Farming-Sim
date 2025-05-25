@@ -108,16 +108,35 @@ settingsButton.addEventListener("click", () => {
 
 //Sidebar
 
-const days = Array.from({ length: 30 }, (_, index) => index + 1);
+let day = 1
+const season = ["Spring", "Summer", "Fall", "Winter"]
+let currentSeason = season[0]
+if ((day / 30 == 1)) {
+    currentSeason = season[0]
+} else if (day/30 == 2) {
+    currentSeason = season[1]
+}
 
-const date = {
-    season: ["Spring", "Summer", "Fall", "Winter"],
-    day: days
-};
-let todayDate
+let todayDate = day % 30;
 
-let currentTime = new Date(0, 0, 0, 6, 0);
-let timeDisplay = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "numeric" }).format(currentTime);
+// let currentTime = new Date(0, 0, 0, 6, 0);
+// let timeDisplay = Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "numeric" }).format(currentTime);
+
+// Time
+let hour = 0
+let minute = 0
+
+if (minute >= 60) {
+    minute -= 60;
+    hour++
+}
+
+if (hour >= 24) {
+    hour -= 24;
+    day++
+}
+
+// let timeDisplay = if (hour < 10) {`0${hour}:${minute}`}
 
 let money = 0;
 let moneyDisplay
@@ -126,11 +145,13 @@ const weather = ["Sunny | ☀️", "Rainy | 🌧️"];
 let todayWeather = randomize(weather);
 
 function setTimeDate() {
-    moneyDisplay = new Intl.NumberFormat(undefined, { currency: "USD", style: "currency" }).format(money);
-    document.getElementById("timeDate").innerText = `${moneyDisplay} | ${timeDisplay} | ${todayDate} | ${todayWeather}`;
+    moneyDisplay = Intl.NumberFormat(undefined, { currency: "USD", style: "currency" }).format(money);
+    document.getElementById("timeDate").innerText = `${moneyDisplay} | ${timeDisplay} | ${currentSeason}-${todayDate} | ${todayWeather}`;
 }
 
+// Calendar
 
+const calWrap = document.getElementById("calWrap")
 
 //Character Creation
 
@@ -160,7 +181,7 @@ function newPlayerInfo() {
 
 document.getElementById("characterCreation").addEventListener('submit', (event) => {
     newPlayerInfo();
-    document.getElementById("playerBio").innerHTML = `Your name is ${playerInfo.playerName}. You go by playerPronouns pronouns.`;
+    document.getElementById("playerBio").innerHTML = `Your name is ${playerInfo.playerName}. You are a ${playerInfo.playerOrigin}. You just bought ${playerInfo.playerFarmName}, which is a(n) ${playerInfo.playerFarm}.`;
 })
 
 //Saving new game
@@ -172,8 +193,10 @@ newGame = document.getElementById("newGame").addEventListener("click", () => {
     
     //Init
     scene.currentScene = "intro"
-    currentTime = new Date(0, 0, 0, 6, 0);
-    money = 1500;
+    currentSeason = season[0];
+    hour = 6;
+    minute = 0;
+    if (playerInfo.playerOrigin.value = "citySlicker") {money = 2000;} else {money = 1500}
     todayDate = `${date.season[0]}-${date.day[0]}`;
     setTimeDate()
     renderScene();
@@ -190,8 +213,10 @@ const saveGameButton = document.getElementById("saveGameButton")
 function createSave() {
     let save = {
         playerInfo: playerInfo,
-        todayDate: todayDate,
-        currentTime: currentTime,
+        currentSeason: currentSeason,
+        day: day,
+        hour: hour,
+        minute: minute,
         money: money,
         todayWeather: todayWeather,
         inventoryItems: inventoryItems,
@@ -224,8 +249,10 @@ function loadLocalSave() {
     if (localStorage.getItem("save") !== null) {
         localSave = JSON.parse(localStorage.getItem("save"));
         playerInfo = localSave.playerInfo;
-        todayDate = localSave.todayDate;
-        time = localSave.time;
+        currentSeason = localSave.currentSeason,
+        day = localSave.day,
+        hour = localSave.hour,
+        minute = localSave.minute,
         money = localSave.money;
         todayWeather = localSave.todayWeather;
         inventoryItems = localSave.inventoryItems;
