@@ -51,13 +51,7 @@ p {
     width: 90%;
 }
 
-/* Game window: where the game itself takes place */
-
-.gameWindow {
-    width: 100%;
-}
-
-.gameWindow > #location {
+#location {
     text-align: center;
 }
 
@@ -72,7 +66,6 @@ button {
     padding: 10px 20px;
     text-justify: center;
     border-radius: 12px;
-    transition-duration: 0.4s;
     cursor: pointer;
 }
 
@@ -83,6 +76,14 @@ button:hover {
 .sidebarButton {
     font-size: 1.2rem;
     width: 80%;
+    padding: 15px 32px;
+    transition-duration: 0.4s;
+
+}
+
+.settingsButton {
+    font-size: 1.2rem;
+    /* width: 80%; */
     padding: 15px 32px;
 }
 
